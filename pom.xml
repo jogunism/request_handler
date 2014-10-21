@@ -9,7 +9,7 @@
 	<distributionManagement>
 		<snapshotRepository>
 			<id>snapshots</id>
-			<url>http://pkgrepos.tmonc.net:8080/nexus/content/repositories/snapshots</url>
+			<url>http://pkgs.domain.com/nexus/content/repositories/snapshots</url>
 		</snapshotRepository>
 	</distributionManagement>
 	<properties>
