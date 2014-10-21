@@ -16,9 +16,6 @@ request_handler
 
 6. ./runner [start / top]
 
-7. enjoy!
-
-
 
 -----
 test url
