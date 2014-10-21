@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration>
+
+    <!-- 
+    http://beyondj2ee.wordpress.com/2013/11/05/log4j%EC%97%90%EC%84%9C-logback%EC%9C%BC%EB%A1%9C-%EB%A7%88%EC%9D%B4%EA%B7%B8%EB%A0%88%EC%9D%B4%EC%85%98-%ED%95%98%EA%B8%B0-migrate-from-log4j-to-logback/
+    http://beyondj2ee.wordpress.com/2012/11/09/logback-%EC%82%AC%EC%9A%A9%ED%95%B4%EC%95%BC-%ED%95%98%EB%8A%94-%EC%9D%B4%EC%9C%A0-reasons-to-prefer-logback-over-log4j/
+     -->
+    <property name="LOG_ROOT" value="/var/log/tmonpush-logger" />
+    
+	<appender name="stdout" class="ch.qos.logback.core.ConsoleAppender">
+		<encoder>
+			<pattern>[%-5p] %-30(%d{yyyy-MM-dd HH:mm:ss.SSS} [%t]) [%c{0}] %m%n</pattern>
+		</encoder>
+	</appender>
+
+	<appender name="appication_log" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <file>${LOG_ROOT}/system.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT}/system.log.%d{yyyyMMdd}</fileNamePattern>
+            <maxHistory>30</maxHistory>
+        </rollingPolicy>
+		<encoder>
+			<pattern>[%-5p] %-30(%d{yyyy-MM-dd HH:mm:ss.SSS} [%t]) [%c{0}] %m%n</pattern>
+		</encoder>
+    </appender>
+
+	<appender name="event_log" class="ch.qos.logback.core.rolling.RollingFileAppender">  
+        <file>${LOG_ROOT}/events.log</file>
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <fileNamePattern>${LOG_ROOT}/events.%d{yyyyMMdd}.log.gz</fileNamePattern>
+            <maxHistory>365</maxHistory>
+        </rollingPolicy>
+		<encoder>
+			<pattern>%m%n</pattern>
+		</encoder>
+    </appender>
+
+	<logger name="com.tmoncorp.handler.LoggingEventHandler" additivity="false" level="INFO">
+	    <appender-ref ref="event_log" />
+	</logger>
+
+	<root>
+		<priority value="info" />
+		<appender-ref ref="stdout" />
+		<appender-ref ref="appication_log" />
+	</root>
+	
+</configuration>

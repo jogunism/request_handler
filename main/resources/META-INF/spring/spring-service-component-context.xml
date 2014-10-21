@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:p="http://www.springframework.org/schema/p"
+	xmlns:util="http://www.springframework.org/schema/util"
+	xmlns:c="http://www.springframework.org/schema/c"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans-3.0.xsd
+		http://www.springframework.org/schema/util http://www.springframework.org/schema/util/spring-util-3.2.xsd">	
+
+	<bean id="dataManagingHandler" class="com.tmoncorp.handler.DataManagingHandler"
+	    p:connector-ref="mysqlConnector"
+	    p:batchMaximum="${handler.batch.maximum}"
+	    p:sleepTime="${handler.batch.sleepTime.millisec}"
+	    p:timerInterval="${handler.timer.interval.millisec}" />
+
+	<bean id="loggingEventHandler" class="com.tmoncorp.handler.LoggingEventHandler" />
+
+	<bean id="pushCollectorDisruptorFactory" class="com.tmoncorp.component.PushCollectorDisruptorFactory" 
+		p:ringSize="${disruptor.pushCollectorDisruptorFactory.ringSize}" 
+		p:dataManagingHandler-ref="dataManagingHandler" 
+		p:loggingEventHandler-ref="loggingEventHandler"/>
+
+	<!-- mysql -->
+	<bean id="dataSource" class="org.apache.commons.dbcp.BasicDataSource" 
+		destroy-method="close" 
+		p:driverClassName="${mysql.jdbcClassName}" p:url="${mysql.jdbcUrl}" 
+		p:username="${mysql.user}" p:password="${mysql.password}" 
+		p:validationQuery="${mysql.validationQuery}" p:testOnBorrow="${mysql.isTestOnBlow}"/>
+
+	<bean id="mysqlConnector" class="com.tmoncorp.util.MySqlConnector" p:datasource-ref="dataSource" />
+</beans>
