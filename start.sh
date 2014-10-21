@@ -1,13 +1,13 @@
 #start.sh
-/home/tmon/tmonpush-logger/bin stop
+~/request_handler/bin stop
 
-rm -rf /home/tmon/tmonpush-logger/bin
-rm -rf /home/tmon/tmonpush-logger/conf
-rm -rf /home/tmon/tmonpush-logger/lib
-mkdir /home/tmon/tmonpush-logger/logs
+rm -rf ~/request_handler/bin
+rm -rf ~/request_handler/conf
+rm -rf ~/request_handler/lib
+mkdir ~/request_handler/logs
 
 unzip push-logger-*.zip
 
-chmod 755 /home/tmon/tmonpush-logger/bin/*
+chmod 755 ~/request_handler/bin/*
 
-/home/tmon/tmonpush-logger/bin start
+~/request_handler/bin start
