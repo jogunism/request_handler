@@ -8,14 +8,13 @@ request_handler
 3. import project by maven project in eclipse
 
 4. run this in terminal : 
-   mvn clean install assembly:single 
+   mvn clean install assembly:single -Preal
 
-4. unzip request_handler-0.1.0.SNAPSHOP-stand-alone.zip in your target foler.
+4. unzip request_handler-real-stand-alone.zip in target foler.
 
 5. chmod 755 * at bin folder.
 
 6. ./runner [start / top]
-
 
 -----
 test url
