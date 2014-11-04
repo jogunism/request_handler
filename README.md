@@ -1,7 +1,5 @@
 ## request_handler
 
-These are a few pre-requisites to install:
-
 1. setup :
 
         $> git@github.com:jogunism/request_handler.git 
