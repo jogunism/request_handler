@@ -2,7 +2,7 @@
 
 1. setup :
 
-        $> git@github.com:jogunism/request_handler.git 
+        $> git clone git@github.com:jogunism/request_handler.git 
 
 1. delete .git folder in project : 
 
